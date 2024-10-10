@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useQuery } from "react-query";
 
-import TaskCard from './TaskCard';
+import TaskCard from '../../components/TaskCard/TaskCard';
 import './TaskBoard.css';
-import { Task, TaskStatus } from '../types/Task';
-import { User } from '../types/User';
+import { Task, TaskStatus } from '../../types/Task';
+import { User } from '../../types/User';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import TaskModal from './TaskModal';
-import TaskControls from './TaskControls';
+import TaskModal from '../../components/TaskModal/TaskModal';
+import TaskControls from '../../components/TaskControls/TaskControls';
 import { useNavigate } from 'react-router-dom';
-import {fetchTasks, fetchUsers} from '../utils/mockApis';
+import {fetchTasks, fetchUsers} from '../../utils/mockApis';
 
 // const initialTasks: Task[] = [
 //   { id: 111, title: 'Task 1', status: TaskStatus.Todo, tags: ['urgent', 'prod'], description: 'Description of Task', user : {id: 1, firstName: 'John', lastName: 'Does', profilePic: 'https://i.pravatar.cc/150?img=3'}, createdAt: '26th June' },
@@ -48,19 +48,11 @@ const ProfileRow: React.FC<ProfileRowProps> = ({ avatarUrl, username, additional
 };
 
 const TaskBoard: React.FC = () => {
-    // const {data: initialTasks, isLoading: isTasksLoading, error: errorTasks, refetch: reftechTasks} = useQuery< Task[], Error>(['tasks'], fetchTasks);
-    // const {
-    //     data: initialTasks = [], // Default to an empty array if data is undefined
-    //     isLoading: isTasksLoading,
-    //     error: errorTasks,
-    //     refetch: refetchTasks,
-    //   } = useQuery<Task[], Error>(['tasks'], fetchTasks); // Ensure types are correct
     
-    const {data: initialUsers=[], isLoading: isUserLoading, error: errorUser, refetch: refetchUsers} = useQuery<User[], Error>(['users'], fetchUsers);
-    const {data: initialTasks, isLoading: isTasksLoading, error: errorTask, refetch: refetchTasks} = useQuery<Task[], Error>(['tasks'], fetchTasks);
+    const {data: initialUsers=[], isLoading: isUserLoading} = useQuery<User[], Error>(['users'], fetchUsers);
+    const {data: initialTasks, isLoading: isTasksLoading} = useQuery<Task[], Error>(['tasks'], fetchTasks);
 
   useEffect(()=>{
-    console.log('enter in useEffect of task board========', initialTasks)
     if(initialTasks) {
         setTasks(initialTasks);
         setFilteredTasks(initialTasks);
@@ -74,7 +66,6 @@ const TaskBoard: React.FC = () => {
 
 
   const handleFilterChange = (filters: { status?: string; tags?: string; user?: string; search?: string }) => {
-    console.log('enter in change filter--------',filters);
     let updatedTasks = tasks;
 
     // Filter by Status
@@ -164,6 +155,8 @@ const TaskBoard: React.FC = () => {
         />
       </div>
       {!isUserLoading && <TaskControls onFilterChange={handleFilterChange} onSortChange={handleSortChange} tasks={tasks} users={initialUsers || []} />}
+      {
+        !isTasksLoading &&
       <DragDropContext onDragEnd={onDragEnd}>
         <div className="task-board">
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -202,6 +195,7 @@ const TaskBoard: React.FC = () => {
           </div>
         </div>
       </DragDropContext>
+      }
       {isModalOpen && (
         <TaskModal
           task={currentTask || undefined} // Pass undefined for creating a new task

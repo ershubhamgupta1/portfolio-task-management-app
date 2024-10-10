@@ -1,7 +1,7 @@
 import React from 'react';
-import { Task } from '../types/Task';
+import { Task } from '../../types/Task';
 import './TaskCard.css';
-import Tag from './Tag';
+import Tag from '../Tags/Tag';
 
 interface TaskCardProps {
   task: Task;
@@ -10,7 +10,6 @@ interface TaskCardProps {
 
 
 const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
-    console.log('task========', task);
     return (
       <div className="task-card" onClick={()=>{onClick(task)}}>
         <h3 className="task-title">{task.title}</h3>
@@ -22,9 +21,6 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
           <div className="task-tags">
             {task.tags?.map((tag, index) => (
                 <Tag text={tag} />
-            //   <span key={index} className="task-tag">
-            //     {tag}
-            //   </span>
             ))}
           </div>
         </div>

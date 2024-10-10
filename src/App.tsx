@@ -2,10 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Cookies from 'js-cookie';
-import TaskBoard from './components/TaskBoard'; // Your TaskBoard component
-import ProfileSettings from './components/ProfilePage'; // Your ProfileSettings component
-import Login from './components/Login'; // Your Login component
+import TaskBoard from './screens/TaskBoard/TaskBoard'; // Your TaskBoard component
+import ProfileSettings from './screens/ProfilePage/ProfilePage'; // Your ProfileSettings component
+import Login from './screens/Login/Login'; // Your Login component
 import { getUserSession } from './utils/auth';
 
 const App: React.FC = () => {
@@ -14,7 +13,6 @@ const App: React.FC = () => {
   useEffect(() => {
     // Check user session or cookie here to determine if the user is logged in
     const userCookie = getUserSession();
-    console.log('userCookie=======', userCookie);
     if (userCookie) {
       setIsAuthenticated(true);
     }
@@ -24,10 +22,10 @@ const App: React.FC = () => {
     setIsAuthenticated(true);
   };
 
-  const handleLogout = () => {
-    setIsAuthenticated(false);
-    Cookies.remove('user'); // Clear user session
-  };
+  // const handleLogout = () => {
+  //   setIsAuthenticated(false);
+  //   Cookies.remove('user'); // Clear user session
+  // };
 
   return (
     <div className="app">

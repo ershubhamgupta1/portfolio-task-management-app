@@ -1,8 +1,8 @@
 import React from 'react';
 import './TaskModal.css';
-import { Task, TaskStatus } from '../types/Task';
-import Select, { Option } from './Select';
-import { User } from '../types/User';
+import { Task, TaskStatus } from '../../types/Task';
+import Select, { Option } from '../Select/Select';
+import { User } from '../../types/User';
 
 interface TaskModalProps {
   task?: Task; // Optional task for editing
@@ -30,7 +30,7 @@ const TaskModal: React.FC<TaskModalProps> = ({ users, task, onClose, onSave }) =
       description,
       tags,
       status,
-      user: task?.user, // Optional user
+      user: user, // Optional user
       userProfilePic: task?.user?.profilePic || 'https://i.pravatar.cc/150?img=3', // Optional user profile pic
       parentTaskId: task?.parentTaskId, // Optional parent task ID
       createdAt: new Date().toISOString(), // Current date for created tasks

@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import './Login.css'; // Optional: for custom styles
-import { mockAuth } from '../utils/mockApis';
-import { setUserSession } from '../utils/auth';
-import { UserSession } from '../types/User';
+import { mockAuth } from '../../utils/mockApis';
+import { setUserSession } from '../../utils/auth';
+import { UserSession } from '../../types/User';
 
-interface Login {
+interface LoginProps {
     onLogin: ()=> void;
 }
 
-const Login: React.FC<Login> = ({onLogin}) => {
+const Login: React.FC<LoginProps> = ({onLogin}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);

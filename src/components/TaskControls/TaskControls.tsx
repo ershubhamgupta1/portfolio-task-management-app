@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import './TaskControls.css';
-import { Task, TaskStatus } from '../types/Task';
-import { User } from '../types/User';
-import Select, {Option} from './Select';
-import Input from './Input';
+import { Task, TaskStatus } from '../../types/Task';
+import { User } from '../../types/User';
+import Select, {Option} from '../Select/Select';
+import Input from '../Input/Input';
 
 interface TaskControlsProps {
   tasks: Task[];
@@ -18,7 +18,6 @@ const TaskControls: React.FC<TaskControlsProps> = ({ onFilterChange, onSortChang
   const [tags, setTags] = React.useState('');
   const [user, setUser] = React.useState('');
   const [search, setSearch] = React.useState('');
-  const [isCreating, setIsCreating] = React.useState(false);
   const userOptions:Option[] = users.map(user=> {
     return {value: user.id.toString(), label: `${user.firstName} ${user.lastName}`};
   });
@@ -30,27 +29,28 @@ const TaskControls: React.FC<TaskControlsProps> = ({ onFilterChange, onSortChang
   });
 
 
-  const handleCreateTask = () => {
-    setIsCreating(true);
-    // Optionally, you can call onCreateTask here to show a modal
-  };
   const handleUserChange = (value:any)=>{
-    console.log('enter in handle user change======', value);
     setUser(value);
+  }
+  const handleStatusChange = (value:any)=>{
+    setStatus(value);
+  }
+  const handleTagChange = (value:any)=>{
+    setTags(value);
   }
 
   useEffect(()=>{
     onFilterChange({ status, tags, user, search });
-  }, [status, tags, user, search])
+  }, [status, tags, user, search, onFilterChange])
 
   return (
     <div className="task-controls">
       <div className="task-controls-row">
         <div className="filter-group">
-          <Select defaultLabel={'Select status'} options={statusOptions} onChange={handleUserChange} />
+          <Select defaultLabel={'Select status'} options={statusOptions} onChange={handleStatusChange} />
           <Input
             value={tags}
-            onChange={setSearch}
+            onChange={handleTagChange}
             placeholder="Filter by Tags"
             className="filter-input"
           />
