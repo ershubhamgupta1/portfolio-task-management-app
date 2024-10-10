@@ -1,0 +1,106 @@
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Modal Container */
+  .modal {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    width: 480px; /* Increased width for better balance */
+    max-width: 90vw; /* Responsive on smaller screens */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    margin-top: 0;
+  }
+  
+  /* Modal Title */
+  .modal h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #333333;
+  }
+  
+  /* Input Fields */
+  .modal-input, .modal-textarea, .modal-select {
+    width: 94%;
+    padding: 14px;
+    margin-bottom: 18px; /* Increased spacing */
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    color: #333333;
+    transition: border-color 0.3s;
+  }
+  .modal-select {
+    width: 100%;
+  }
+  .modal-input:focus, .modal-textarea:focus, .modal-select:focus {
+    outline: none;
+    border-color: #007bff; /* Blue border on focus */
+  }
+  
+  /* Textarea */
+  .modal-textarea {
+    height: 100px;
+    resize: vertical;
+  }
+  
+  /* Buttons */
+  .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .modal-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+    margin-left: 10px;
+  }
+  
+  .save-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+  }
+  
+  .save-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .close-button {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #dddddd;
+  }
+  
+  .close-button:hover {
+    background-color: #e2e6ea;
+  }
+  
+  /* Adding soft shadow effect on focus and button hover */
+  .modal-button:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 480px) {
+    .modal {
+      width: 90%;
+    }
+  }
+  

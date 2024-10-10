@@ -1,0 +1,33 @@
+.select-wrapper {
+    /* margin-bottom: 16px; */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .generic-select-dropdown {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;  
+}
+  
+  /* .generic-select-dropdown:focus {
+    outline: none;
+    border-color: #007bff;
+  }
+  
+  .generic-select-dropdown option {
+    padding: 10px;
+  }
+  
+  .generic-select-dropdown:hover {
+    border-color: #007bff;
+  } */
+  

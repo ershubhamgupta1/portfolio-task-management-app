@@ -1,0 +1,36 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* .app {
+    padding: 20px;
+  } */
+  
+  /* .task-board {
+    display: flex;
+    justify-content: space-between;
+  } */
+  
+  
+  /* .task-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 10px 0;
+    padding: 10px;
+    cursor: pointer;
+  }
+   */
+  
+  .create-task-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

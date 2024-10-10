@@ -1,0 +1,115 @@
+/* TaskCard.css */
+
+/* Task Card Container */
+.task-card {
+    background-color: #f8f9fa; /* Light grey background to match design */
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column; /* Allow for flexible layout */
+    /* width: 100%; */
+    /* width: 500px;  */
+  }
+  
+  /* Task Card Hover Effect */
+  .task-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Task Title */
+  .task-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+  }
+  
+  .task-icons {
+    display: flex;
+    align-items: center;
+  }
+  /* Task Metadata */
+  .task-metadata {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: space-between; /* Space out avatars and tags */
+  }
+  
+  /* Task Status Tag */
+  .task-status {
+    border-radius: 12px;
+    padding: 5px 10px;
+    font-size: 0.85rem;
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  /* Status Colors */
+  .todo {
+    background-color: #007bff; /* Blue for To Do */
+  }
+  
+  .in-progress {
+    background-color: #6f42c1; /* Purple for In Progress */
+  }
+  
+  .blocked {
+    background-color: #dc3545; /* Red for Blocked */
+  }
+  
+  .hold {
+    background-color: #6c757d; /* Grey for Hold */
+  }
+  
+  .completed {
+    background-color: #28a745; /* Green for Completed */
+  }
+  
+  .ready-for-prod {
+    background-color: #17a2b8; /* Teal for Ready for Prod */
+  }
+  
+  /* User Avatar Styles */
+  .user-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid white; /* To give a 'pop' effect */
+  }
+  
+  /* Tags */
+  .task-tags {
+    display: flex;
+    flex-wrap: wrap; /* Allow tags to wrap */
+  }
+  
+  .task-tag {
+    background-color: #e0e0e0; /* Light grey for tags */
+    border-radius: 12px;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+  
+  /* Edit Icon */
+  .edit-icon {
+    font-size: 1.2rem;
+    color: #007bff;
+    cursor: pointer;
+    margin-left: auto; /* Align to the right */
+  }
+  
+  .edit-icon:hover {
+    color: #0056b3; /* Darker blue on hover */
+  }
+  

@@ -1,0 +1,110 @@
+/* TaskBoard.css */
+
+.task-board-header {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 25px;
+    padding-right: 25px;
+    background: #f0f4f8;
+}
+
+.task-board {
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    padding: 20px;
+    background-color: #f0f4f8; /* Light background color */
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    height: 100vh;
+  }
+  
+  .board-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    text-align: center; /* Center the title */
+  }
+  
+  /* Columns for Task Status */
+  .columns {
+    display: flex;
+    justify-content: space-between; /* Space out columns */
+  }
+  
+  .column {
+    
+    flex: 0 0 25%; /* Each column takes equal space */
+    margin: 0 10px; /* Add space between columns */
+    background-color: transparent; /* White background for columns */
+    /* border-radius: 8px; */
+    padding: 10px;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .column h2 {
+    font-size: 1.5rem;
+    text-align: center; /* Center the column titles */
+    color: #343a40; /* Dark color for contrast */
+  }
+  
+  .create-task-button {
+    background-color: #007bff; /* No background */
+    border-radius: 50%; /* Circular shape */
+    width: 50px; /* Width */
+    height: 50px; /* Height */
+    display: flex; /* Flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    cursor: pointer; /* Pointer on hover */
+    border: none;
+  }
+  
+  .create-task-button:hover {
+    background-color: #0056b3; /* Light background on hover */
+    border-color: #4caf50; /* Change border color on hover */
+  }
+  
+  .create-task-button span {
+    font-size: 24px; /* Increase size of the plus icon */
+    color: #fff; /* Green color for the icon */
+  }
+  
+
+
+  /*
+  Profile avatar css
+*/
+  .profile-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  /* border-bottom: 1px solid #ccc; */
+}
+
+.profile-avatar {
+  width: 50px;   /* Adjust the size of the avatar */
+  height: 50px;  /* Adjust the size of the avatar */
+  border-radius: 50%;
+  margin-right: 10px; /* Space between avatar and text */
+  object-fit: cover;  /* Ensure the image covers the area */
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.username {
+  margin: 0;
+  font-size: 1.2em;  /* Adjust the font size */
+  font-weight: bold;
+}
+
+.additional-info {
+  margin: 5px 0 0 0; /* Margin above the additional info */
+  font-size: 0.9em;   /* Adjust the font size */
+  color: #666;        /* Optional: Change text color */
+}
