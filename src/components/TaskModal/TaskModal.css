@@ -17,7 +17,9 @@
     background-color: #ffffff;
     border-radius: 12px;
     padding: 32px;
-    width: 480px; /* Increased width for better balance */
+    max-height: 80vh;
+    overflow-y: auto;
+    width: 70%; /* Increased width for better balance */
     max-width: 90vw; /* Responsive on smaller screens */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
@@ -34,7 +36,7 @@
   
   /* Input Fields */
   .modal-input, .modal-textarea, .modal-select {
-    width: 94%;
+    width: 97%;
     padding: 14px;
     margin-bottom: 18px; /* Increased spacing */
     border: 1px solid #dddddd;
@@ -104,3 +106,100 @@
     }
   }
   
+
+  /* Child tasks section */
+.child-tasks {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 2px solid #ddd;
+}
+
+.child-tasks h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #333;
+}
+
+.child-tasks ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.child-task-item {
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #eee;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.child-task-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.child-task-title span {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+.child-task-item p {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+}
+
+.child-task-item:hover {
+  background-color: #f1f1f1;
+}
+
+.child-task-item:last-child {
+  margin-bottom: 0;
+}
+
+
+.modal::-webkit-scrollbar {
+  width: 6px; /* Make the scrollbar thinner */
+}
+
+.modal::-webkit-scrollbar-thumb {
+  background-color: #888; /* Darker thumb */
+  border-radius: 4px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Darker on hover */
+}
+
+.modal::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Light background for the track */
+}
+
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow items to wrap to the next line */
+  gap: 10px;
+}
+
+.flex-item-100 {
+  flex: 1 1 100%;
+}
+
+/* For 50% width (half the container width) */
+.flex-item-50 {
+  flex: 1 1 45%;
+}
+
+/* For 33.333% width (one-third of the container) */
+.flex-item-33 {
+  flex: 1 1 33.3333%;
+}
+
+/* For 25% width (one-fourth of the container) */
+.flex-item-25 {
+  flex: 1 1 25%;
+}

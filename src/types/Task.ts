@@ -9,7 +9,14 @@ export enum TaskStatus {
     Completed = 'Completed',
     ReadyForProd = 'Ready for Prod',
   }
-  
+
+  export enum TaskPriority {
+    Low = 'Low',
+    Medium = 'Medium',
+    High = 'High',
+    Critical = 'Critical'
+  }
+
 
 export interface Task {
     id: number;
@@ -21,5 +28,6 @@ export interface Task {
     userProfilePic?: string;
     parentTaskId?: number;
     createdAt: string;
+    priority: TaskPriority
 }
 

@@ -61,6 +61,7 @@ const TaskBoard: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
+  const [currentChildTasks, setCurrentChildTasks] = useState<Task[]>([]);
   const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
 
@@ -91,32 +92,33 @@ const TaskBoard: React.FC = () => {
 
   const handleSortChange = ({sortBy, sortOrder}: {sortBy: keyof Task | null, sortOrder: string}) => {
     if(sortBy === 'user'){
-      const sortedTasks = filteredTasks.sort((task1, task2)=> {
-        const name1 = `${task1.user?.firstName} ${task1.user?.lastName}`;
-        const name2 = `${task2.user?.firstName} ${task2.user?.lastName}`;
-        if(sortOrder === 'asc'){
-          if(name1 < name2) return -1;
-          else if(name1 < name2) return 1;
-          else return 0;
+      filteredTasks.sort((a, b): number => {
+        if (!a.user && !b.user) return 0; // Both `user` are undefined, consider them equal
+        if (!a.user) return 1; // If `a.user` is undefined, `b` comes first
+        if (!b.user) return -1; // If `b.user` is undefined, `a` comes first
+
+        // Compare firstname first
+        const firstNameComparison = a.user.firstName.localeCompare(b.user.firstName);
+        if (firstNameComparison !== 0) {
+          return sortOrder === 'asc' ? firstNameComparison : -firstNameComparison;
         }
-        else {
-          if(name1 > name2) return 1;
-          else if(name1 < name2) return -1;
-          else return 0;
-        }
+        // If first names are equal, compare user.lastName
+        const lastNameComparison = a.user.lastName.localeCompare(b.user.lastName);
+        return sortOrder === 'asc' ? lastNameComparison : -lastNameComparison;      
       });
-      setFilteredTasks(JSON.parse(JSON.stringify(sortedTasks)));
+      setFilteredTasks(JSON.parse(JSON.stringify(filteredTasks)));
     }
-    // const sortedTasks = [...filteredTasks].sort((a, b) => a[sortBy]?.localeCompare(b[sortBy]));
   };
 
-  const handleEdit = (task: Task) => {
-    setCurrentTask(task);
+  const handleEdit = (parentTask: Task) => {
+    const childTasks = initialTasks?.filter(task=> task.parentTaskId === parentTask.id);
+    console.log('parentTask===========', parentTask);
+    setCurrentChildTasks(childTasks || []);
+    setCurrentTask(parentTask);
     setIsModalOpen(true);
   };
 
   const filterTasks = (status: string) => {
-    console.log('filteredTasks======', filteredTasks.filter((task) => task.status === status))
     return filteredTasks.filter((task) => task.status === status);
   };
 
@@ -130,7 +132,7 @@ const TaskBoard: React.FC = () => {
     movedTask.status = result.destination.droppableId; // Update the status of the task
     updatedTasks.splice(result.destination.index, 0, movedTask);
     setTasks(updatedTasks);
-    // setFilteredTasks(updatedTasks);
+    setFilteredTasks(updatedTasks);
   };
 
   const closeModal = () => {
@@ -144,6 +146,7 @@ const TaskBoard: React.FC = () => {
   };
 
   const saveTask = (task: Task) => {
+    console.log('saveTask=======', task);
     let updatedTasks;
     if (currentTask) {
       // Editing an existing task
@@ -158,7 +161,6 @@ const TaskBoard: React.FC = () => {
     closeModal();
   };
 
-  console.log('re rendered=======', filteredTasks);
 
   return (
     <>
@@ -214,9 +216,12 @@ const TaskBoard: React.FC = () => {
       }
       {isModalOpen && (
         <TaskModal
+          key={currentTask?.id}
           task={currentTask || undefined} // Pass undefined for creating a new task
+          childTasks={currentChildTasks}
           onClose={closeModal}
           onSave={saveTask}
+          onChildClick={handleEdit}
           users={initialUsers || []}
         />
       )}
