@@ -19,8 +19,8 @@ const TaskCard: React.FC<TaskCardProps> = ({ task, onClick }) => {
           </div>
         <div className="task-metadata">
           <div className="task-tags">
-            {task.tags?.map((tag, index) => (
-                <Tag text={tag} />
+            {task.tags?.map((tag) => (
+                <Tag key={tag} text={tag} />
             ))}
           </div>
         </div>

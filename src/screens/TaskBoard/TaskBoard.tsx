@@ -67,7 +67,6 @@ const TaskBoard: React.FC = () => {
 
   const handleFilterChange = (filters: { status?: string; tags?: string; user?: string; search?: string }) => {
     let updatedTasks = tasks;
-
     // Filter by Status
     if (filters.status) {
       updatedTasks = updatedTasks.filter(task => task.status === filters.status);
@@ -90,9 +89,25 @@ const TaskBoard: React.FC = () => {
     setFilteredTasks(updatedTasks);
   };
 
-  const handleSortChange = (sortBy: keyof Task) => {
+  const handleSortChange = ({sortBy, sortOrder}: {sortBy: keyof Task | null, sortOrder: string}) => {
+    if(sortBy === 'user'){
+      const sortedTasks = filteredTasks.sort((task1, task2)=> {
+        const name1 = `${task1.user?.firstName} ${task1.user?.lastName}`;
+        const name2 = `${task2.user?.firstName} ${task2.user?.lastName}`;
+        if(sortOrder === 'asc'){
+          if(name1 < name2) return -1;
+          else if(name1 < name2) return 1;
+          else return 0;
+        }
+        else {
+          if(name1 > name2) return 1;
+          else if(name1 < name2) return -1;
+          else return 0;
+        }
+      });
+      setFilteredTasks(JSON.parse(JSON.stringify(sortedTasks)));
+    }
     // const sortedTasks = [...filteredTasks].sort((a, b) => a[sortBy]?.localeCompare(b[sortBy]));
-    // setFilteredTasks(sortedTasks);
   };
 
   const handleEdit = (task: Task) => {
@@ -101,6 +116,7 @@ const TaskBoard: React.FC = () => {
   };
 
   const filterTasks = (status: string) => {
+    console.log('filteredTasks======', filteredTasks.filter((task) => task.status === status))
     return filteredTasks.filter((task) => task.status === status);
   };
 
@@ -114,7 +130,7 @@ const TaskBoard: React.FC = () => {
     movedTask.status = result.destination.droppableId; // Update the status of the task
     updatedTasks.splice(result.destination.index, 0, movedTask);
     setTasks(updatedTasks);
-    setFilteredTasks(updatedTasks);
+    // setFilteredTasks(updatedTasks);
   };
 
   const closeModal = () => {
@@ -129,8 +145,6 @@ const TaskBoard: React.FC = () => {
 
   const saveTask = (task: Task) => {
     let updatedTasks;
-    console.log('task=======', task);
-
     if (currentTask) {
       // Editing an existing task
       updatedTasks = tasks.map(t => t.id === task.id ? task : t);
@@ -143,6 +157,8 @@ const TaskBoard: React.FC = () => {
     setFilteredTasks(updatedTasks);
     closeModal();
   };
+
+  console.log('re rendered=======', filteredTasks);
 
   return (
     <>
