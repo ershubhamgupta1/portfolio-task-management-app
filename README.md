@@ -7,16 +7,16 @@ A feature-rich and customizable Task Management App built with **React**, **Node
 ## Screenshots
 
 ### Image 1
-![Task Dashboard screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/task-dashboard-screen.png)
+![Task Dashboard screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/blob/main/assets/task-dashboard-screen.png)
 
 ### Image 2
-![Login screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/login-screen.png)
+![Login screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/blob/main/assets/login-screen.png)
 
 ### Image 3
-![Task edit/create screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/task-edit-screen.png)
+![Task edit/create screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/blob/main/assets/task-edit-screen.png)
 
 ### Image 4
-![User profile screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/profile-screen.png)
+![User profile screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/blob/main/assets/profile-screen.png)
 
 ## 🚀 Features
 
@@ -165,5 +165,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## 🧑‍💻 Authors
 
-- [Your Name](https://github.com/ershubhamgupta1) - Full Stack Developer
+- [Shubham Gupta](https://github.com/ershubhamgupta1) - Full Stack Developer
 - Contributions from the open-source community ❤️
