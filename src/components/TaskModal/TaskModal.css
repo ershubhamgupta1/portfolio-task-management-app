@@ -16,7 +16,7 @@
   .modal {
     background-color: #ffffff;
     border-radius: 12px;
-    padding: 32px;
+    padding: 14px 32px 32px 32px;
     max-height: 80vh;
     overflow-y: auto;
     width: 70%; /* Increased width for better balance */
@@ -45,6 +45,26 @@
     color: #333333;
     transition: border-color 0.3s;
   }
+
+  .cross-button-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .cross-button {
+    top: 10px; /* Adjust for positioning */
+    right: 10px; /* Adjust for positioning */
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666; /* Default color */
+    transition: color 0.3s ease;
+  }
+  .cross-button:hover {
+    color: #e74c3c; /* Change color on hover */
+  }  
+
   .modal-select {
     width: 100%;
   }
@@ -160,6 +180,10 @@
   margin-bottom: 0;
 }
 
+.anchor-button {
+  color: gray;
+}
+
 
 .modal::-webkit-scrollbar {
   width: 6px; /* Make the scrollbar thinner */
@@ -203,3 +227,49 @@
 .flex-item-25 {
   flex: 1 1 25%;
 }
+
+
+.custom-fields {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.custom-field-container {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+
+.custom-field {
+  display: flex;
+  flex: 1 1 250px;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.custom-field label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.custom-field input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.add-field-button {
+  background-color: #20c997;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.add-field-button:hover {
+  background-color: #198f7d;
+}
+

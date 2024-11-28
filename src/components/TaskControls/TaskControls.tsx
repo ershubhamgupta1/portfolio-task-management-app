@@ -62,40 +62,71 @@ const TaskControls: React.FC<TaskControlsProps> = ({ onFilterChange, onSortChang
   }, [sortColumn, sortOrder])
 
   return (
-    <div className="task-controls">
-      <div className="task-controls-row">
-        <div className="filter-group">
-          <Select defaultLabel={'Select status'} options={statusOptions} onChange={handleStatusChange} />
-          <Input
-            value={tags}
-            onChange={handleTagChange}
-            placeholder="Filter by Tags"
-            className="filter-input"
-          />
-          <Select defaultLabel={'Select user'} options={userOptions} onChange={handleUserChange} />
-          <Input
-            value={search}
-            onChange={setSearch}
-            placeholder="Search Task"
-            className="filter-input"
-          />
-        </div>
+<div className="task-controls">
+  <div className="task-controls-row">
+    <div className="filter-group">
+      {/* Status Select */}
+      <Select
+        id="select-status"
+        defaultLabel="Select status"
+        options={statusOptions}
+        onChange={handleStatusChange}
+        aria-label="Filter tasks by status"
+      />
 
-        {/* Sort Controls */}
-        <div className="sort-group">
-          <Select defaultLabel={'Sort by'} className='sort-button' options={sortOptions} onChange={(value)=>{handleSortColumnChange(value as keyof Task)}} />
-          <button onClick={handleSortToggle} className='sort-button'>
-            Sort {sortOrder === 'asc' ? 'Desc' : 'Asc'}
-          </button>
-          {/* <button onClick={() => onSortChange('user' as keyof Task)} className="sort-button">
-            Sort by User
-          </button>
-          <button onClick={() => onSortChange('status' as keyof Task)} className="sort-button">
-            Sort by Status
-          </button> */}
-        </div>
-      </div>
+      {/* Tags Input */}
+      <Input
+        value={tags}
+        onChange={handleTagChange}
+        placeholder="Filter by Tags"
+        className="filter-input"
+        aria-label="Filter tasks by tags"
+      />
+
+      {/* User Select */}
+      <Select
+        id="select-user"
+        defaultLabel="Select user"
+        options={userOptions}
+        onChange={handleUserChange}
+        aria-label="Filter tasks by user"
+      />
+
+      {/* Search Input */}
+      <Input
+        value={search}
+        onChange={setSearch}
+        placeholder="Search Task"
+        className="filter-input"
+        aria-label="Search tasks"
+      />
     </div>
+
+    {/* Sort Controls */}
+    <div className="sort-group">
+      {/* Sort By Select */}
+      <Select
+        id="sort-by"
+        defaultLabel="Sort by"
+        className="sort-button"
+        options={sortOptions}
+        onChange={(value) => handleSortColumnChange(value as keyof Task)}
+        aria-label="Sort tasks by column"
+      />
+
+      {/* Sort Order Button */}
+      <button
+        onClick={handleSortToggle}
+        className="sort-button"
+        aria-label={`Toggle sort order to ${
+          sortOrder === 'asc' ? 'descending' : 'ascending'
+        }`}
+      >
+        Sort {sortOrder === 'asc' ? 'Desc' : 'Asc'}
+      </button>
+    </div>
+  </div>
+</div>
   );
 };
 

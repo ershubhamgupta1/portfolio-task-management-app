@@ -1,46 +1,169 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Task Management App
 
-## Available Scripts
+A feature-rich and customizable Task Management App built with **React**, **Node.js**, and **Flexbox**, providing efficient task tracking, drag-and-drop functionality, and robust accessibility features. 
 
-In the project directory, you can run:
 
-### `npm start`
+## Screenshots
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Image 1
+![Task Dashboard screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/task-dashboard-screen.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Image 2
+![Login screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/login-screen.png)
 
-### `npm test`
+### Image 3
+![Task edit/create screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/task-edit-screen.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Image 4
+![User profile screen](https://github.com/ershubhamgupta1/portfolio-task-management-app/assets/profile-screen.png)
 
-### `npm run build`
+## 🚀 Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Features
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Task Management
+- Create, edit, and delete tasks.
+- Drag-and-drop functionality to update task statuses (e.g., Todo, In Progress, Done).
+- Customizable fields for additional task details like Project Name or Department.
+- Comments section for real-time task discussions.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Login Screen**
+  - Secure login with form validation.
+  - User authentication.
+  - Test the app with the provided credentials:
+    - **Username:** John@Does  
+    - **Password:** password  
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Profile Page
+- View and edit user profiles.
+- Upload profile pictures.
+- Track assigned tasks and their statuses.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Accessibility (AAA Standard)
+The app is designed to adhere to **AAA Accessibility Standards**, ensuring:
+- High contrast for readability.
+- Fully keyboard-navigable components.
+- Semantic HTML and ARIA roles for assistive technologies.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### Additional Features
+- Beautiful date formatting (e.g., `Mar 15, 24`).
+- Responsive layout with Flexbox-based grid system.
+- Thin scroller for modal windows to enhance UI aesthetics.
+- Configurable theme options.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## Testing the App
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can test the app with the following credentials:
+- **Username:** John@Does  
+- **Password:** password
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🛠️ Tech Stack
+
+- **Frontend**: React, CSS Flexbox
+- **Drag-and-Drop Library**: `react-beautiful-dnd`
+
+---
+
+## 📦 Installation
+
+Follow these steps to set up and run the application locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/ershubhamgupta1/portfolio-task-management-app
+   cd task-management-app
+   ```
+
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+
+3. **Run the development server**:
+   ```bash
+   npm start
+   ```
+
+4. **Access the app**:
+   Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## 🧩 Usage
+
+### Task Board
+- Drag tasks between columns to update their status.
+- Click on a task to open the task modal and view details or comments.
+
+### Task Modal
+- Edit task details, add comments, or delete tasks.
+- Use the `Escape` key to close the modal.
+
+### Custom Fields
+- Add fields like **Project Name**, **Department**, or **Priority** to your task creation form.
+
+---
+
+## 🎨 Customization
+
+### Flexbox Utility Classes
+To assign custom widths and heights to elements, use the following predefined classes:
+- `.w-50`: Set width to 50% of the container.
+- `.w-100`: Set width to 100% of the container.
+- `.h-50`: Set height to 50% of the container.
+- `.h-100`: Set height to 100% of the container.
+
+Add these classes to your HTML or React components as needed.
+
+---
+
+## 🛡️ Accessibility
+
+- Fully compliant with ARIA roles and attributes.
+- Keyboard navigation and focus management for all interactive elements.
+
+---
+
+## 📖 Contributing
+
+We welcome contributions! To contribute to this project:
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/new-feature
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add a new feature"
+   ```
+4. Push the branch:
+   ```bash
+   git push origin feature/new-feature
+   ```
+5. Open a pull request.
+
+---
+
+## 🌟 Features to Implement Next
+
+- **Recurring Tasks**: Add support for daily, weekly, or custom recurring tasks.
+- **Notifications**: Notify users of approaching deadlines.
+- **File Attachments**: Allow users to attach files to tasks.
+
+---
+
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 🧑‍💻 Authors
+
+- [Your Name](https://github.com/ershubhamgupta1) - Full Stack Developer
+- Contributions from the open-source community ❤️

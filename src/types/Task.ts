@@ -28,6 +28,16 @@ export interface Task {
     userProfilePic?: string;
     parentTaskId?: number;
     createdAt: string;
-    priority: TaskPriority
+    priority: TaskPriority;
+    dueDate: Date;
+    customFields?: Record<string, string>
+}
+
+export interface TaskComment {
+  id: number;
+  taskId: number;
+  text: string;
+  userId: number;
+  createdAt: string;
 }
 

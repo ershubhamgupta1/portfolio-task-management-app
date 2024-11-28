@@ -10,7 +10,7 @@ import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import TaskModal from '../../components/TaskModal/TaskModal';
 import TaskControls from '../../components/TaskControls/TaskControls';
 import { useNavigate } from 'react-router-dom';
-import {fetchTasks, fetchUsers} from '../../utils/mockApis';
+import { fetchTasks, fetchUsers } from '../../utils/mockApis';
 
 // const initialTasks: Task[] = [
 //   { id: 111, title: 'Task 1', status: TaskStatus.Todo, tags: ['urgent', 'prod'], description: 'Description of Task', user : {id: 1, firstName: 'John', lastName: 'Does', profilePic: 'https://i.pravatar.cc/150?img=3'}, createdAt: '26th June' },
@@ -40,7 +40,7 @@ const ProfileRow: React.FC<ProfileRowProps> = ({ avatarUrl, username, additional
     <div className="profile-row" onClick={() => { navigate('/profile'); }}>
       <img src={avatarUrl} alt="Profile Avatar" className="profile-avatar" />
       <div className="profile-avatar-wrapper">
-        <h3 className="username">{username}</h3>
+        <h2 className="username">{username}</h2>
         {additionalInfo && <p className="additional-info">{additionalInfo}</p>}
       </div>
     </div>
@@ -48,16 +48,16 @@ const ProfileRow: React.FC<ProfileRowProps> = ({ avatarUrl, username, additional
 };
 
 const TaskBoard: React.FC = () => {
-    
-    const {data: initialUsers=[], isLoading: isUserLoading} = useQuery<User[], Error>(['users'], fetchUsers);
-    const {data: initialTasks, isLoading: isTasksLoading} = useQuery<Task[], Error>(['tasks'], fetchTasks);
 
-  useEffect(()=>{
-    if(initialTasks) {
-        setTasks(initialTasks);
-        setFilteredTasks(initialTasks);
+  const { data: initialUsers = [], isLoading: isUserLoading } = useQuery<User[], Error>(['users'], fetchUsers);
+  const { data: initialTasks, isLoading: isTasksLoading } = useQuery<Task[], Error>(['tasks'], fetchTasks);
+
+  useEffect(() => {
+    if (initialTasks) {
+      setTasks(initialTasks);
+      setFilteredTasks(initialTasks);
     }
-  }, [initialTasks]);  
+  }, [initialTasks]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTask, setCurrentTask] = useState<Task | null>(null);
@@ -90,8 +90,8 @@ const TaskBoard: React.FC = () => {
     setFilteredTasks(updatedTasks);
   };
 
-  const handleSortChange = ({sortBy, sortOrder}: {sortBy: keyof Task | null, sortOrder: string}) => {
-    if(sortBy === 'user'){
+  const handleSortChange = ({ sortBy, sortOrder }: { sortBy: keyof Task | null, sortOrder: string }) => {
+    if (sortBy === 'user') {
       filteredTasks.sort((a, b): number => {
         if (!a.user && !b.user) return 0; // Both `user` are undefined, consider them equal
         if (!a.user) return 1; // If `a.user` is undefined, `b` comes first
@@ -104,15 +104,14 @@ const TaskBoard: React.FC = () => {
         }
         // If first names are equal, compare user.lastName
         const lastNameComparison = a.user.lastName.localeCompare(b.user.lastName);
-        return sortOrder === 'asc' ? lastNameComparison : -lastNameComparison;      
+        return sortOrder === 'asc' ? lastNameComparison : -lastNameComparison;
       });
       setFilteredTasks(JSON.parse(JSON.stringify(filteredTasks)));
     }
   };
 
   const handleEdit = (parentTask: Task) => {
-    const childTasks = initialTasks?.filter(task=> task.parentTaskId === parentTask.id);
-    console.log('parentTask===========', parentTask);
+    const childTasks = initialTasks?.filter(task => task.parentTaskId === parentTask.id);
     setCurrentChildTasks(childTasks || []);
     setCurrentTask(parentTask);
     setIsModalOpen(true);
@@ -138,6 +137,7 @@ const TaskBoard: React.FC = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentTask(null);
+    setCurrentChildTasks([]);
   };
 
   const handleCreateTask = () => {
@@ -146,7 +146,6 @@ const TaskBoard: React.FC = () => {
   };
 
   const saveTask = (task: Task) => {
-    console.log('saveTask=======', task);
     let updatedTasks;
     if (currentTask) {
       // Editing an existing task
@@ -161,13 +160,22 @@ const TaskBoard: React.FC = () => {
     closeModal();
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLDivElement>, task: Task) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault(); // Prevent default behavior for spacebar (scrolling)
+      handleEdit(task)
+    }
+    else if (e.key === 'Escape') {
+      closeModal();  // Close the modal when Escape key is pressed
+    }
+  };
 
   return (
     <>
       <div className='task-board-header'>
         <h1 className="board-title">Task Management Board</h1>
         <ProfileRow
-          avatarUrl="https://via.placeholder.com/150" 
+          avatarUrl="https://via.placeholder.com/150"
           username="John Doe"
           additionalInfo="Software Engineer"
         />
@@ -175,44 +183,60 @@ const TaskBoard: React.FC = () => {
       {!isUserLoading && <TaskControls onFilterChange={handleFilterChange} onSortChange={handleSortChange} tasks={tasks} users={initialUsers || []} />}
       {
         !isTasksLoading &&
-      <DragDropContext onDragEnd={onDragEnd}>
-        <div className="task-board">
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-            <button onClick={handleCreateTask} className="create-task-button">
-              <span>+</span>
-            </button>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <div className="task-board">
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <button
+                onClick={handleCreateTask}
+                className="create-task-button"
+                aria-label="Create a new task"
+              >
+                <span>+</span>
+              </button>
+            </div>
+
+            <div className="columns" role="region" aria-labelledby="task-board-columns">
+              {taskStatusValues.map((status) => (
+                <Droppable key={status} droppableId={status}>
+                  {(provided) => (
+                    <div
+                      className="column"
+                      ref={provided.innerRef}
+                      {...provided.droppableProps}
+                      aria-labelledby={`${status}-tasks`}
+                    >
+                      <h2 id={`${status}-tasks`}>
+                        {status}
+                      </h2>
+
+                      {filterTasks(status).map((task, index) => (
+                        <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              aria-labelledby={`task-${task.id}`}
+                              onClick={() => { handleEdit(task) }}
+                              onKeyDown={(e) => handleKeyDown(e, task)}
+                            >
+                              <TaskCard
+                                task={task}
+                                aria-label={`Edit task: ${task.title}`}
+                                onClose={closeModal}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+
+                    </div>
+                  )}
+                </Droppable>
+              ))}
+            </div>
           </div>
-          <div className="columns">
-            {taskStatusValues.map((status) => (
-              <Droppable key={status} droppableId={status}>
-                {(provided) => (
-                  <div
-                    className="column"
-                    ref={provided.innerRef}
-                    {...provided.droppableProps}
-                  >
-                    <h2>{status}</h2>
-                    {filterTasks(status).map((task, index) => (
-                      <Draggable key={task.id} draggableId={task.id.toString()} index={index}>
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                          >
-                            <TaskCard task={task} onClick={() => handleEdit(task)} />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-            ))}
-          </div>
-        </div>
-      </DragDropContext>
+        </DragDropContext>
       }
       {isModalOpen && (
         <TaskModal

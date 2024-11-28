@@ -1,0 +1,43 @@
+/* DatePicker.css */
+.date-picker {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .date-label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .date-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    font-size: 16px;
+    color: #555;
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .date-input:hover {
+    border-color: #888;
+  }
+  
+  .date-input:focus {
+    border-color: #5b9bd5;
+    box-shadow: 0 0 5px rgba(91, 155, 213, 0.5);
+    outline: none;
+  }
+  
+  .formatted-date {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+  }
+  

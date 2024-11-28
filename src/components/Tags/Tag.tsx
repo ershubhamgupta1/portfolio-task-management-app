@@ -1,4 +1,6 @@
 import React, { useState, useEffect, FC } from 'react';
+import ColorContrast from 'color-contrast';
+const COLOR = '#fff';
 
 interface TagProps {
   text: string;
@@ -15,7 +17,9 @@ const Tag: FC<TagProps> = ({ text }) => {
       for (let i = 0; i < 6; i++) {
         color += letters[Math.floor(Math.random() * 16)];
       }
-      return color;
+      const contrast = ColorContrast('#ffffff', color); // Check contrast between two colors
+      if(contrast > 5) return color;
+      else return generateRandomColor();
     };
 
     // Set a random background color
@@ -24,7 +28,7 @@ const Tag: FC<TagProps> = ({ text }) => {
 
   const tagStyle: React.CSSProperties = {
     backgroundColor: bgColor,
-    color: '#fff',
+    color: COLOR,
     padding: '8px 12px',
     borderRadius: '20px',
     display: 'inline-block',

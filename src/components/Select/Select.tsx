@@ -7,6 +7,7 @@ export interface Option {
 }
 
 interface SelectProps {
+  id: string;
   label?: string; // Optional label for the select
   defaultLabel? : string;
   className? : string;
@@ -15,7 +16,7 @@ interface SelectProps {
   defaultValue?: string; // Optional default value
 }
 
-const Select: React.FC<SelectProps> = ({ className, defaultLabel, label, options, onChange, defaultValue = '' }) => {
+const Select: React.FC<SelectProps> = ({ id, className, defaultLabel, label, options, onChange, defaultValue = '' }) => {
   const [selectedValue, setSelectedValue] = useState<string>(defaultValue);
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -23,10 +24,10 @@ const Select: React.FC<SelectProps> = ({ className, defaultLabel, label, options
     setSelectedValue(value); // Update the internal state
     onChange(value); // Trigger the callback with the selected value
   };
-
   return (
       <select
-        id="generic-select"
+        id={id}
+        aria-label={defaultLabel}
         value={selectedValue}
         onChange={handleSelectChange}
         className={className || "generic-select-dropdown"}
