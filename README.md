@@ -75,7 +75,7 @@ Follow these steps to set up and run the application locally:
 1. **Clone the repository**:
    ```bash
    git clone https://github.com/ershubhamgupta1/portfolio-task-management-app
-   cd task-management-app
+   cd portfolio-task-management-app
    ```
 
 2. **Install dependencies**:
