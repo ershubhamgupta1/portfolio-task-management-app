@@ -163,7 +163,9 @@ This project is licensed under the [MIT License](LICENSE).
 
 ---
 
-## 🧑‍💻 Authors
+## 👤 Author  
 
-- [Shubham Gupta](https://github.com/ershubhamgupta1) - Full Stack Developer
-- Contributions from the open-source community ❤️
+**Shubham Gupta**  
+- GitHub: [@shubham-gupta](https://github.com/ershubhamgupta1)  
+- LinkedIn: [Your LinkedIn Profile](https://linkedin.com/in/shubham-mern-stack-dev)  
+- Email: ershubhamgupta1@gmail.com
